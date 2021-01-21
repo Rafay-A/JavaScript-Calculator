@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/512/Calculator-icon.png" type="image/gif" sizes="16x16">
+    <title>My First Calculator</title>
+    <style>
+        h1{
+            font-family: 'Times New Roman', Times, serif;
+            margin: 5vh 0;
+            text-align: center;
+            color: royalblue;
+        }
+        table{
+            border: double 6px;
+            height: 400px;
+            width:23%;
+            margin-left:auto;
+            margin-right: auto;
+        }
+        input[type=button]{
+            height: 50px;
+            width: 90%;
+            margin:3px;
+        }
+        input[type=text]{
+            width: 96%;
+            height: 50px;
+            margin:0 3px;
+        }
+    </style>
+
+    <script>
+        var memory;
+
+    function mc()
+    {
+        memory = 0;
+    }
+
+    function ms()
+    {
+        x = document.getElementById("display").value;
+		memory = eval(x);
+    }
+
+    function mr()
+    {
+        document.getElementById("display").value = memory;
+    }
+
+    function mplus()
+    {
+        x = eval(document.getElementById("display").value);
+		memory = eval(memory+ "+" +x);
+    }
+
+    function plus_minus()
+    {
+        var expression = document.getElementById("display").value;
+        var index = expression.indexOf('-');
+        if (index != 0)
+        {
+            var toggled = "-(" + expression + ")";
+            document.getElementById("display").value = toggled;
+        }
+        else if (index == 0)
+        {
+            var bracket = expression.indexOf('(');
+            if (bracket == 1)
+            {
+                const toggled = expression.slice(2, expression.length - 1);
+                document.getElementById("display").value = toggled;
+            }
+        }
+    }
+
+    function inverse_func()
+    {
+        var result = eval(document.getElementById("display").value);
+        var v = 1 / result;
+        document.getElementById("display").value = v;
+    }
+
+    function square_func()
+    {
+		x = document.getElementById("display").value;
+		var y = x*x;
+		document.getElementById("display").value = y;
+	}
+
+    function under_root(){
+		x = document.getElementById("display").value;
+		var y = Math.sqrt(x);
+		document.getElementById("display").value = y;
+    }
+    </script>
+</head>
+
+
+<body>
+    <h1>Abdul Rafay's Calculator</h1>>
+    <form name="My_calculator">
+        <table>
+            <tr>
+                <td colspan="5"> <input type="text" name="display" id="display" disabled></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="MC" onclick="mc()"></td>
+                <td><input type="button" value="0" onclick="My_calculator.display.value += '0'"></td>
+                <td><input type="button" value="1" onclick="My_calculator.display.value += '1'"></td>
+                <td><input type="button" value="2" onclick="My_calculator.display.value += '2'"></td>
+                <td><input type="button" value="+" onclick="My_calculator.display.value += ' + '"></td>
+            </tr>
+        
+            <tr>
+                <td><input type="button" value="MS" onclick="ms()"></td>
+                <td><input type="button" value="3" onclick="My_calculator.display.value += '3'"></td>
+                <td><input type="button" value="4" onclick="My_calculator.display.value += '4'"></td>
+                <td><input type="button" value="5" onclick="My_calculator.display.value += '5'"></td>
+                <td><input type="button" value="-" onclick="My_calculator.display.value += ' - '"></td>
+            </tr>
+        
+            <tr>
+                <td><input type="button" value="MR" onclick="mr()"></td>
+                <td><input type="button" value="6" onclick="My_calculator.display.value += '6'"></td>
+                <td><input type="button" value="7" onclick="My_calculator.display.value += '7'"></td>
+                <td><input type="button" value="8" onclick="My_calculator.display.value += '8'"></td>
+                <td><input type="button" value="*" onclick="My_calculator.display.value += ' * '"></td>
+            </tr>
+        
+            <tr>
+                <td><input type="button" value="M+" onclick="mplus()"></td>
+                <td><input type="button" value="9" onclick="My_calculator.display.value += '9'"></td>
+                <td><input type="button" value="±" onclick="plus_minus()"></td>
+                <td><input type="button" value="=" onclick="My_calculator.display.value = eval(My_calculator.display.value)"></td>
+                <td><input type="button" value="/" onclick="My_calculator.display.value += ' / '"></td>
+            </tr>
+        
+            <tr>
+                <td><input type="button" value="1/x" onclick="inverse_func()"></td>
+                <td><input type="button" value="·" onclick="My_calculator.display.value += '.'"></td>
+                <td><input type="button" value="x²" onclick="square_func()"></td>
+                <td><input type="button" value="√ " onclick="under_root()"></td>
+                <td><input type="button" value="C" onclick="My_calculator.display.value = ''">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
